@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChartJS - Doughnut</title>
+
+
+    <!-- Load c3.css -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.8/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.8/c3.min.js"></script>
+</head>
+<body>
+<div id="chart">
+<!-- <img src="treerings.jpg" alt= "" height="42" width= "42"></div> -->
+
+      <script>
+
+    c3.generate({
+
+        bindto: '#chart',  // id of the chart div, as defined earlier
+
+        size: {  // size (height and width) of the chart, by pixels
+            height: 350,
+            width: 350
+        },
+
+        title:{
+            text: "Species Composition 1990" // Use the NAME attribute as chart title
+                              // This is displayed above the chart
+                              // You may use other strings, HTML elements or combined
+        },
+
+        data: {
+            // Define the actual data
+            // I use the attribute values as data for making the charts
+            // The strings are labels of the charts (shown in legend)
+            columns: [
+                ['Oaks', 31],
+                ['Maples', 17],
+                ['Ash', 34],
+                ['Basswood', 11],
+                ['Hickory', 3],
+                ['Elm',2],
+                ['Black Cherry',1],
+
+            ],
+
+            type: 'donut',  // chart type
+        },
+        tooltip: {
+          	contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+            for (i = 0; i < d.length; i++) {
+            	return d[i].name === 'Oaks'? '<img src="swampoak.jpeg" alt="oak" width="250">':
+             d[i].name == 'Maples'?' <img src="mapleleaf.jpeg" alt="Maple" width="250">':
+             d[i].name == 'Ash'? '<img src="ashleaves.jpeg" alt= "Ash" width="250">':
+             d[i].name == 'Basswood'? '<img src="basswood.jpeg" alt="basswood" width="250">':
+             d[i].name == 'Hickory'? '<img src="shaghick.jpeg" alt="Hickory" width="250">':
+             d[i].name == 'Elm'? '<img src="elmleaf.jpeg" alt="Elms" width="250">':
+                              '<img src="blackcherry.jpeg" alt="Black Cherry" width="250">';
+      }
+         }
+       },
+
+        // donut:{ // options to customize the donut chart
+        //     label: {
+        //         show: false // set to not show labels on the segments (too busy)
+        //     },
+        //     width: 30  // width of donut
+        // },
+
+        color:{ // colors of donut segments, same order as the data
+            pattern:["#0fcc61","#cccc00","#9ACD32","#9cad83","#006666","#29b8a3","#4D5360","#4D5360",]
+        }
+    });
+</script>
+</body>
+</html>
